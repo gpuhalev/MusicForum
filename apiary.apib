@@ -1,0 +1,328 @@
+FORMAT: 1A
+
+# Music-Forum_Api
+Api for project MusicForum: https://github.com/gpuhalev/MusicForum
+
+# Group Forum Instruments
+Instruments in this forum.
+
+## Instrument [/instruments]
+An instument has 4 parameters
+- id
+- created_at
+- created_by
+- name
+
+### List all instruments [GET]
++ Response 200 (application/json)
+        
+        [{
+            "id": 1,
+            "created_at": "23:01:01 12.03.2015",
+            "created_by": "puh",
+            "name": "drums"
+            }, {
+            "id": 2,
+            "created_at": "23:01:01 13.03.2015",
+            "created_by": "puh",
+            "name": "guitar"
+        }]
+
+
+### Add an instrument [POST]
++ Request (application/json)
+
+        {
+            "created_by": "puh",
+            "name": "vocals"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 3,
+            "created_at": "19:01:01 14.03.2015",
+            "created_by": "puh",
+            "name": "vocals"
+        }
+        
+## Instrument [/instruments/{id}]
+A single instrument
+
++ Parameters
+    + id (required, number)
+
+### Get instrument details [GET]
++ Response 200 (application/json)
+    
+    + Body
+    
+            {
+                "id": 1,
+                "created_at": "23:01:01 12.03.2015",
+                "created_by": "puh",
+                "name": "drums"
+            }
+
+### Edit an instrument [PUT]
++ Request (application/json)
+
+    + Body
+    
+            {
+                "created_by": "puh",
+                "instrument": "drums"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 1,
+                "created_at": "23:01:01 12.03.2015",
+                "created_by": "puh",
+                "name": "drums"
+            }
+
+### Remove an instrument [DELETE]
++ Response 204
+        
+
+# Group Forum Users
+Users in this forum.
+
+## User [/users]
+An user has 7 parameters
+- id
+- registered_at
+- username
+- e-mail
+- password
+- sex
+- is_god
+
+### Get all users [GET]
++ Response 200 (application/json)
+
+        [{
+            "id": 1,
+            "registered_at": "00:00:01 01.01.1000",
+            "username": "puh",
+            "e-mail": "gesho.puh@gmail.com",
+            "password": "asdfgh",
+            "sex": "male",
+            "is_god": 1
+            }, {
+            "id": 2
+            "registered_at": "01:01:02 02:02:1999",
+            "username": "miteto",
+            "e-mail": "miteto@abv.bg",
+            "password": "imamsi",
+            "sex": "male",
+            "is_god": 0
+        }]
+        
+        
+### Add an user [POST]
++ Request (application/json)
+        
+        {
+            "username": "ani",
+            "e-mail": "aniB@hotmail.com",
+            "password": "asdfghij9",
+            "sex": "female",
+        }
+    
++ Response 201 (application/json)
+
+        {
+            "id": 3,
+            "registered_at": "00:00:01 27.02.2015",
+            "created_at": "19:01:01 14.03.2015",
+            "username": "ani",
+            "e-mail": "aniB@hotmail.com",
+            "password": "asdfghij9",
+            "sex": "female",
+            "is_god": 0
+        }       
+        
+## User [/users/{id}]
+A single user
+
++ Parameters
+    + id (required, number)
+    
+
+### Get user details [GET]
++ Response 200 (application/json)
+
+    + Body
+        
+                {
+                    "id": 3,
+                    "registered_at": "00:00:01 27.02.2015",
+                    "username": "ani",
+                    "e-mail": "aniB@hotmail.com",
+                    "password": "asdfghij9",
+                    "sex": "female",
+                    "is_god": 0
+                }
+        
+### Edit an user [PUT]
++ Request (application/json)
+
+    + Body
+    
+                {
+                    "username": "ani",
+                    "password": "novaparola"
+                }
+        
++ Response 200 (application/json)
+
+    + Body      
+    
+                {
+                    "id": 3,
+                    "username": "ani",
+                    "password": "novaparola"
+                }
+        
+### Remove an user [DELETE]
++ Response 204        
+        
+
+
+# Group Forum Ads
+Ads in this forum.
+
+## Ad [/ads]
+- id
+- created_at
+- created_by
+- is_looking
+- instrument
+- city
+
+### Get all ads [GET]
++ Response 200 (application/json)
+
+            [{
+                "id": 1,
+                "created_at": "00:00:01 01.01.2001",
+                "created_by": "puh",
+                "is_looking": 1,
+                "instrument": "guitar",
+                "city": "Sofia",
+                }, {
+                "id": 2,
+                "created_at": "00:00:01 01.01.2002",
+                "created_by": "miteto",
+                "is_looking": 0,
+                "instrument": "vocals",
+                "city": "Plovdiv"
+            }]
+
+
+### Add an ad [POST]
++ Request (application/json)
+
+            {
+                "created_by": "miteto",
+                "is_looking": 1,
+                "instrument": "guitar",
+                "city": "Sofia"
+            }
+
++ Response 201 (application/json)
+            
+            {
+                "id": 3,
+                "created_at": "00:00:01 01.01.2010",
+                "created_by": "miteto",
+                "is_looking": 1,
+                "instrument": "guitar",
+                "city": "Sofia"
+            }
+
+
+## Ad [/ads/{id}]
+A single ad
+
++ Parameters
+    + id (required, number)
+
+
+### Get user details [GET]
++ Response 200 (application/json)
+
+    + Body      
+    
+                {
+                    "id": 3,
+                    "created_at": "00:00:01 01.01.2010",
+                    "created_by": "miteto",
+                    "is_looking": 1,
+                    "instrument": "guitar",
+                    "city": "Sofia"
+                }
+
+### Edit an ad [PUT]
++ Request (application/json)
+
+    + Body      
+    
+                {
+                    "is_looking": 1,
+                    "instrument": "vocals",
+                    "city": "Sofia"
+                }
+
++ Response 200 (application/json)
+
+    + Body      
+    
+                {
+                    "id": 3,
+                    "created_at": "00:00:01 01.01.2010",
+                    "created_by": "miteto",
+                    "is_looking": 1,
+                    "instrument": "vocals",
+                    "city": "Sofia"
+                }
+
+### Remove an ad [DELETE]
++ Response 204
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
